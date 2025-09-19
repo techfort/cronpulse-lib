@@ -1,0 +1,22 @@
+name: Publish Go Module
+
+on:
+  push:
+    tags:
+      - 'go-v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22.x'
+      - name: Publish Go Module
+        run: |
+          echo "Go modules are published by pushing a tag. Ensure your go.mod is correct."
+          # Optionally, you can run tests or checks here
+          go mod tidy
+          go test ./...
