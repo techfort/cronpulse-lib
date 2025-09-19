@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="cronpulse",
-    version="0.1.0",
+    version="0.1.1",  # bumped from 0.1.0 after secret fix
     packages=find_packages(),
     install_requires=["requests>=2.28.0"],
     extras_require={
