@@ -1,4 +1,11 @@
-from .client import CronPulse, Monitor
+import warnings
+from cronpulse_lib import CronPulse, Monitor, __version__ as _lib_version
 
-__version__ = "0.1.0"
-__all__ = ["CronPulse", "Monitor"]
+warnings.warn(
+    "Root-level python package layout deprecated; use `import cronpulse_lib` instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
+
+__all__ = ["CronPulse", "Monitor", "__version__"]
+__version__ = _lib_version
