@@ -16,11 +16,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.12'
       - name: Install build dependencies
+        working-directory: python
         run: |
           python -m pip install --upgrade pip
-          pip install build pytest
+          pip install -e .[dev]
+          pip install build
+      - name: Verify environment
+        working-directory: python
+        run: |
+          python -c "import sys, pkgutil; print('Python', sys.version); import requests; print('requests OK', requests.__version__)"
+          pip list
       - name: Run tests
         working-directory: python
         run: |

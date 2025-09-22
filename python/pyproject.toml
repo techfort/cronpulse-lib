@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cronpulse-lib"
-version = "0.1.5"
+version = "0.1.6"
 description = "CronPulse client library for Python"
 readme = "README.md"
 license = "MIT"
