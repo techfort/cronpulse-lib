@@ -1,5 +1,5 @@
 import pytest
-from cronpulse import CronPulse
+from cronpulse_lib import CronPulse
 from datetime import datetime
 
 @pytest.fixture
