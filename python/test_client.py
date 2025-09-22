@@ -1,6 +1,6 @@
 import pytest
 from cronpulse_lib import CronPulse
-from datetime import datetime
+from datetime import datetime, UTC
 
 @pytest.fixture
 def mock_requests(monkeypatch):
@@ -24,15 +24,15 @@ def mock_requests(monkeypatch):
 
 def test_create_monitor(mock_requests):
     cp = CronPulse("test_api_key")
-    monitor = cp.create_monitor("Test Monitor", 60, "test@example.com", datetime.utcnow())
+    monitor = cp.create_monitor("Test Monitor", 60, "test@example.com", datetime.now(UTC))
     assert monitor.monitor_id == "123"
 
 def test_ping(mock_requests):
     cp = CronPulse("test_api_key")
-    monitor = cp.create_monitor("Test Monitor", 60, "test@example.com", datetime.utcnow())
+    monitor = cp.create_monitor("Test Monitor", 60, "test@example.com", datetime.now(UTC))
     monitor.ping()  # Should not raise
 
 def test_delete(mock_requests):
     cp = CronPulse("test_api_key")
-    monitor = cp.create_monitor("Test Monitor", 60, "test@example.com", datetime.utcnow())
+    monitor = cp.create_monitor("Test Monitor", 60, "test@example.com", datetime.now(UTC))
     monitor.delete()  # Should not raise
