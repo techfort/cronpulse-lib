@@ -6,7 +6,7 @@ long_description = readme_path.read_text(encoding="utf-8") if readme_path.exists
 
 setup(
     name="cronpulse-lib",  # renamed from cronpulse (taken on PyPI)
-    version="0.1.4",  # version bump for enriched tests & license cleanup
+    version="0.1.5",  # version bump for workflow dependency fix
     packages=find_packages(include=["cronpulse_lib", "cronpulse_lib.*"]),
     install_requires=["requests>=2.28.0"],
     extras_require={
