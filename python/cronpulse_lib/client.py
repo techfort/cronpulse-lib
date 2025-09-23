@@ -83,7 +83,7 @@ class CronPulse:
         payload = {
             "name": name,
             "interval": interval,
-            "email": email,
+            "email_recipient": email,
             "expires_at": expires_at.isoformat(),
         }
         resp = self._request("POST", "/monitors", json=payload)
