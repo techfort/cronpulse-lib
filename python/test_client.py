@@ -50,6 +50,9 @@ def test_create_monitor(mock_requests):
     assert first["headers"]["Authorization"].startswith("Bearer ")
     # verify expires_at isoformat serialization
     assert "T" in first["json"]["expires_at"]
+    # verify correct field name for email
+    assert first["json"]["email_recipient"] == "test@example.com"
+    assert "email" not in first["json"]  # ensure old field name not present
 
 def test_ping(mock_requests):
     cp = mock_requests(CronPulse("test_api_key"))
