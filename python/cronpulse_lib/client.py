@@ -6,7 +6,7 @@ from typing import Optional, Any, Dict, Mapping, MutableMapping, Protocol, TypeV
 from urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
-DEFAULT_BASE_URL = "https://api.cronpulse.com"  # TODO: confirm actual production URL
+DEFAULT_BASE_URL = "https://cronpulse.dev/api"
 
 JSONPrimitive = Union[str, int, float, bool, None]
 JSONType = Union[JSONPrimitive, "JSONDict", list[JSONPrimitive]]
@@ -107,7 +107,7 @@ class Monitor:
         return self._client.base_url
 
     def ping(self) -> None:
-        self._client._request("POST", f"/monitors/{self.monitor_id}/ping")
+        self._client._request("POST", f"/ping/{self.monitor_id}")
 
     def delete(self) -> None:
         self._client._request("DELETE", f"/monitors/{self.monitor_id}")

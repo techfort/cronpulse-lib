@@ -24,7 +24,8 @@ def mock_requests(monkeypatch):
         calls.append({"method": method, "url": url, "json": json, "headers": headers})
         if method == "POST" and url.endswith("/monitors"):
             return MockResponse({"id": "123"})
-        if method == "POST" and url.endswith("/ping"):
+        # Accept ping endpoint with monitor ID: /ping/{id}
+        if method == "POST" and "/ping/" in url:
             return MockResponse({}, 200)
         if method == "DELETE" and "/monitors/" in url:
             return MockResponse({}, 200)
@@ -60,7 +61,7 @@ def test_ping(mock_requests):
     monitor.ping()  # Should not raise
     # ensure ping path called
     urls = [c["url"] for c in cp._test_calls]  # type: ignore[attr-defined]
-    assert any(u.endswith("/ping") for u in urls)
+    assert any(u.endswith(f"/ping/{monitor.monitor_id}") for u in urls)
 
 def test_delete(mock_requests):
     cp = mock_requests(CronPulse("test_api_key"))
